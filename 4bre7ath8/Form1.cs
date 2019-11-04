@@ -20,7 +20,7 @@ namespace _4bre7ath8
 
         Stopwatch stopWatch = new Stopwatch();
         int
-            swElapsed = 0,
+            stopWatchElapsed = 0,
             secondsAl = 1,
             secondsTut = 1,
             secondsVer = 1,
@@ -28,6 +28,16 @@ namespace _4bre7ath8
             sizeChangeAl = 4,
             sizeChangeVer = 2,
             counter = 0;
+
+        Font
+            defFont;
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            label1.Text = "4-7-8 Nefes Egzersizine\nBaşlamak İçin\nEnter Tuşuna Basınız";
+            defFont = label1.Font;
+            MessageBox.Show(defFont.Size+"");
+        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -65,38 +75,38 @@ namespace _4bre7ath8
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            swElapsed = stopWatch.Elapsed.Seconds;
-            if (swElapsed > 0 && swElapsed <= 4)
+            stopWatchElapsed = stopWatch.Elapsed.Seconds;
+            if (stopWatchElapsed > 0 && stopWatchElapsed <= 4)
             {
                 fontSize -= sizeChangeAl;
                 label1.Text = "Nefes Al\n" + secondsAl++;
                 label1.BackColor = Color.FromArgb(64, 0, 255,255);
             }
-            else if (swElapsed > 4 && swElapsed <= 11)
+            else if (stopWatchElapsed > 4 && stopWatchElapsed <= 11)
             {
                 label1.Text = "Nefes Tut\n" + secondsTut++;
-                label1.BackColor = Color.FromArgb(128, 255, 128, 0);
+                label1.BackColor = Color.FromArgb(96, 255, 128, 0);
             }
-            else if (swElapsed > 11 && swElapsed <= 19)
+            else if (stopWatchElapsed > 11 && stopWatchElapsed <= 19)
             {
                 fontSize += sizeChangeVer;
                 label1.Text = "Nefes Ver\n" + secondsVer++;
                 label1.BackColor = Color.FromArgb(64, 0, 255, 0);
             }
-            else if (swElapsed > 19)
+            else if (stopWatchElapsed > 19)
             {
                 counter++;
                 if (counter < 2)
                 {
                     label1.Text = counter + ".\nTekrar\nTamam!";
                     stopWatch.Restart();
-                    swElapsed = stopWatch.Elapsed.Seconds;
+                    stopWatchElapsed = stopWatch.Elapsed.Seconds;
                 }
                 else
                 {
                     stopWatch.Stop();
                     timer1.Stop();
-                    label1.Text = counter + "\nTekrar\nTamamlandı!";
+                    label1.Text = counter + " Tekrar ile\nEgzersiz\nTamamlandı!";
                     counter = 0;
                 }
                 label1.BackColor = Color.FromKnownColor(KnownColor.Control);
