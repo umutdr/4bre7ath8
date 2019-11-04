@@ -44,6 +44,11 @@ namespace _4bre7ath8
             {
                 label1.Font = new Font(label1.Font.Name, 48);
                 fontSize = Convert.ToInt32(label1.Font.Size);
+                label1.BackColor = Color.FromKnownColor(KnownColor.Control);
+                secondsAl = 1;
+                secondsTut = 1;
+                secondsVer = 1;
+                counter = 0;
                 label1.Text = "HAZIR OL!";
                 timer1.Start();
                 stopWatch.Restart();
@@ -64,25 +69,26 @@ namespace _4bre7ath8
             if (swElapsed > 0 && swElapsed <= 4)
             {
                 fontSize -= sizeChangeAl;
-                label1.Font = new Font(label1.Font.Name, fontSize);
                 label1.Text = "Nefes Al\n" + secondsAl++;
+                label1.BackColor = Color.FromArgb(64, 0, 255,255);
             }
             else if (swElapsed > 4 && swElapsed <= 11)
             {
                 label1.Text = "Nefes Tut\n" + secondsTut++;
+                label1.BackColor = Color.FromArgb(128, 255, 128, 0);
             }
             else if (swElapsed > 11 && swElapsed <= 19)
             {
                 fontSize += sizeChangeVer;
-                label1.Font = new Font(label1.Font.Name, fontSize);
                 label1.Text = "Nefes Ver\n" + secondsVer++;
+                label1.BackColor = Color.FromArgb(64, 0, 255, 0);
             }
             else if (swElapsed > 19)
             {
                 counter++;
                 if (counter < 2)
                 {
-                    label1.Text = counter + ". Tekrar Tamam!";
+                    label1.Text = counter + ".\nTekrar\nTamam!";
                     stopWatch.Restart();
                     swElapsed = stopWatch.Elapsed.Seconds;
                 }
@@ -90,13 +96,17 @@ namespace _4bre7ath8
                 {
                     stopWatch.Stop();
                     timer1.Stop();
-                    label1.Text = counter + " Tekrar Tamamlandı!";
+                    label1.Text = counter + "\nTekrar\nTamamlandı!";
                     counter = 0;
                 }
+                label1.BackColor = Color.FromKnownColor(KnownColor.Control);
                 secondsAl = 1;
                 secondsTut = 1;
                 secondsVer = 1;
             }
+
+            label1.Font = new Font(label1.Font.Name, fontSize);
+
         }
     }
 }
